@@ -39,7 +39,6 @@ interface Answers {
   excitement: number;
 }
 
-
 const HeartBackground = dynamic(() => import("@/components/HeartBackground"), {
   ssr: false,
 });
@@ -83,17 +82,16 @@ export default function EnchantingDateProposalApp() {
     });
   };
 
-const formatDate = (d: Date | null) => {
-  if (!d) return "";
-  try {
-    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-  } catch {
-    return d.toDateString();
-  }
-};
+  const formatDate = (d: Date | null) => {
+    if (!d) return "";
+    try {
+      return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    } catch {
+      return d.toDateString();
+    }
+  };
 
   const steps = [
-    
     <motion.div key="step0" className="text-center" {...fadeInUp}>
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
         Will you go on a date with me?
@@ -156,121 +154,116 @@ const formatDate = (d: Date | null) => {
       </div>
     </motion.div>,
 
-    
     <motion.div key="step1" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={1} totalSteps={6}>
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
-        YEYYYYYYYY, WHEN SHALL WE GO?
-      </h2>
-      <motion.img
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        src="https://media.tenor.com/WiQQRwR2QFAAAAAi/cute-panda.gif"
-        alt="Excited bear gif"
-        className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
-      />
-      <div className="mb-6 p-4 bg-white rounded-lg shadow-lg overflow-x-auto">
-        <div className="flex justify-center mb-4 min-w-fit">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+          YEYYYYYYYY, WHEN SHALL WE GO?
+        </h2>
+        <motion.img
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          src="https://media.tenor.com/WiQQRwR2QFAAAAAi/cute-panda.gif"
+          alt="Excited bear gif"
+          className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+        />
+        <div className="mb-6 p-3 sm:p-4 bg-white rounded-lg shadow-lg overflow-hidden">
           <Calendar
             mode="single"
             selected={answers.date || undefined}
             onSelect={(date) => setAnswers({ ...answers, date: date || null })}
-            className="mx-auto scale-75 sm:scale-90 md:scale-100 origin-top"
+            className="mx-auto w-full max-w-[320px]"
           />
-        </div>
-        <div className="flex gap-2 sm:gap-3 justify-center mt-4 flex-wrap px-2">
-          <Select onValueChange={(val) => setHour(val)}>
-            <SelectTrigger className="w-20 sm:w-24 bg-pink-50 border-pink-200 text-pink-700 text-sm">
-              <SelectValue placeholder="Hour" />
-            </SelectTrigger>
-            <SelectContent>
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((h) => (
-                <SelectItem key={h} value={`${h}`}>
-                  {h}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
 
-          <Select onValueChange={(val) => setMinute(val)}>
-            <SelectTrigger className="w-16 sm:w-20 bg-pink-50 border-pink-200 text-pink-700 text-sm">
-              <SelectValue placeholder="Min" />
-            </SelectTrigger>
-            <SelectContent>
-              {['00', '15', '30', '45'].map((m) => (
-                <SelectItem key={m} value={m}>
-                  {m}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3 justify-center">
+            <Select onValueChange={(val) => setHour(val)}>
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+                <SelectValue placeholder="Hour" />
+              </SelectTrigger>
+              <SelectContent>
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((h) => (
+                  <SelectItem key={h} value={`${h}`}>
+                    {h}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-          <Select onValueChange={(val) => setAmpm(val)}>
-            <SelectTrigger className="w-16 sm:w-20 bg-pink-50 border-pink-200 text-pink-700 text-sm">
-              <SelectValue placeholder="AM/PM" />
-            </SelectTrigger>
-            <SelectContent>
-              {['AM', 'PM'].map((ap) => (
-                <SelectItem key={ap} value={ap}>
-                  {ap}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            <Select onValueChange={(val) => setMinute(val)}>
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+                <SelectValue placeholder="Min" />
+              </SelectTrigger>
+              <SelectContent>
+                {['00', '15', '30', '45'].map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {m}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select onValueChange={(val) => setAmpm(val)}>
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+                <SelectValue placeholder="AM/PM" />
+              </SelectTrigger>
+              <SelectContent>
+                {['AM', 'PM'].map((ap) => (
+                  <SelectItem key={ap} value={ap}>
+                    {ap}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-      </div>
-      <Button
-        onClick={() => setStep(step + 1)}
-        disabled={!answers.date || !answers.time}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
-      >
-        <Clock className="mr-2 h-5 w-5" /> Set our date!{" "}
-        <Heart className="ml-2 h-5 w-5" />
-      </Button>
+        <Button
+          onClick={() => setStep(step + 1)}
+          disabled={!answers.date || !answers.time}
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
+        >
+          <Clock className="mr-2 h-5 w-5" /> Set our date! <Heart className="ml-2 h-5 w-5" />
+        </Button>
       </StepCard>
     </motion.div>,
 
-  
     <motion.div key="step2" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={2} totalSteps={6}>
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
-        What shall we feast on, my dear?
-      </h2>
-      <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 mb-8">
-        {[
-          { name: "Pork Thali", icon: <Utensils className="w-6 h-6" /> },
-          { name: "Pani Puri", icon: <Utensils className="w-6 h-6" /> },
-          { name: "Chicken Momos", icon: <Utensils className="w-6 h-6" /> },
-          { name: "Thukpa", icon: <Coffee className="w-6 h-6" /> },
-          { name: "Khampti Authentic Thali", icon: <Utensils className="w-6 h-6" /> },
-          { name: "Buldak Ramen", icon: <Utensils className="w-6 h-6" /> },
-        ].map(({ name, icon }) => (
-          <SelectButton
-            key={name}
-            icon={icon}
-            label={name}
-            isSelected={answers.food.includes(name)}
-            onClick={() => {
-              const newFood = answers.food.includes(name)
-                ? answers.food.filter((f) => f !== name)
-                : [...answers.food, name];
-              setAnswers({ ...answers, food: newFood });
-            }}
-          />
-        ))}
-      </div>
-      <Button
-        onClick={() => setStep(step + 1)}
-        disabled={answers.food.length === 0}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
-      >
-        Looks delicious! 🍽️
-      </Button>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+          What shall we feast on, my dear?
+        </h2>
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 mb-8">
+          {[
+            { name: "Pork Thali", icon: <Utensils className="w-6 h-6" /> },
+            { name: "Pani Puri", icon: <Utensils className="w-6 h-6" /> },
+            { name: "Chicken Momos", icon: <Utensils className="w-6 h-6" /> },
+            { name: "Thukpa", icon: <Coffee className="w-6 h-6" /> },
+            { name: "Khampti Authentic Thali", icon: <Utensils className="w-6 h-6" /> },
+            { name: "Buldak Ramen", icon: <Utensils className="w-6 h-6" /> },
+          ].map(({ name, icon }) => (
+            <SelectButton
+              key={name}
+              icon={icon}
+              label={name}
+              isSelected={answers.food.includes(name)}
+              onClick={() => {
+                const newFood = answers.food.includes(name)
+                  ? answers.food.filter((f) => f !== name)
+                  : [...answers.food, name];
+                setAnswers({ ...answers, food: newFood });
+              }}
+            />
+          ))}
+        </div>
+        <Button
+          onClick={() => setStep(step + 1)}
+          disabled={answers.food.length === 0}
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
+        >
+          Looks delicious! 🍽️
+        </Button>
       </StepCard>
     </motion.div>,
 
-     
     <motion.div key="step3" className="text-center" {...fadeInUp}>
       <h2 className="text-2xl sm:text-3xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
         What shall we watch together?
@@ -294,9 +287,7 @@ const formatDate = (d: Date | null) => {
             className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-3 px-4 sm:py-4 sm:px-6 rounded-lg shadow-md transition-colors duration-300 text-sm sm:text-base"
             onClick={() => {
               if (movie === "Something else") {
-                const customMovie = prompt(
-                  "What movie would you like to watch?"
-                );
+                const customMovie = prompt("What movie would you like to watch?");
                 if (customMovie) handleAnswer("movie", customMovie);
               } else {
                 handleAnswer("movie", movie);
@@ -310,114 +301,108 @@ const formatDate = (d: Date | null) => {
       </div>
     </motion.div>,
 
-    
     <motion.div key="step4" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={4} totalSteps={6}>
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
-        How excited are you for our date?
-      </h2>
-      <div className="max-w-lg mx-auto mb-8 p-6 sm:p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
-        <Slider
-          defaultValue={[50]}
-          max={100}
-          step={25}
-          onValueChange={(value) =>
-            setAnswers({ ...answers, excitement: value[0] })
-          }
-        />
-        <div className="flex justify-between mt-6 text-xs sm:text-sm text-pink-600 font-semibold gap-2">
-          <span>😐 Can&apos;t wait!</span>
-          <span>🤩 Super duper excited!</span>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+          How excited are you for our date?
+        </h2>
+        <div className="max-w-lg mx-auto mb-8 p-6 sm:p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
+          <Slider
+            defaultValue={[50]}
+            max={100}
+            step={25}
+            onValueChange={(value) => setAnswers({ ...answers, excitement: value[0] })}
+          />
+          <div className="flex justify-between mt-6 text-xs sm:text-sm text-pink-600 font-semibold gap-2">
+            <span>😐 Can&apos;t wait!</span>
+            <span>🤩 Super duper excited!</span>
+          </div>
         </div>
-      </div>
-      <motion.div
-        className="text-2xl sm:text-4xl font-playfair font-bold text-pink-600 mb-8"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      >
-        Excitement level: <span className="text-rose-500">{answers.excitement}%</span>
-      </motion.div>
-      <Button
-        onClick={() => {
-          setStep(step + 1);
-          setTimeout(triggerConfetti, 500);
-        }}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
-      >
-        Let&apos;s make it official! 💕
-      </Button>
+        <motion.div
+          className="text-2xl sm:text-4xl font-playfair font-bold text-pink-600 mb-8"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        >
+          Excitement level: <span className="text-rose-500">{answers.excitement}%</span>
+        </motion.div>
+        <Button
+          onClick={() => {
+            setStep(step + 1);
+            setTimeout(triggerConfetti, 500);
+          }}
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+        >
+          Let&apos;s make it official! 💕
+        </Button>
       </StepCard>
     </motion.div>,
 
-     
     <motion.div key="step5" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={6} totalSteps={6}>
-      <h2 className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
-        It&apos;s a date, my love!
-      </h2>
-      <p className="text-base sm:text-lg text-rose-500 mb-3 font-poppins">
-        I can&apos;t wait to see you on:
-      </p>
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-4 sm:px-6 py-4 rounded-2xl border border-pink-200 mb-8 max-w-sm"
-      >
-        <p className="text-xl sm:text-3xl font-playfair font-bold text-pink-700 break-words">
-          {formatDate(answers.date)} at {answers.time}
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
+          It&apos;s a date, my love!
+        </h2>
+        <p className="text-base sm:text-lg text-rose-500 mb-3 font-poppins">
+          I can&apos;t wait to see you on:
         </p>
-      </motion.div>
-      <motion.img
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        src="https://media.tenor.com/yvUCU981VYoAAAAj/mochi-cat-goma.gif"
-        alt="Excited bear gif"
-        className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
-      />
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
-      >
-        <Heart className="text-red-500 w-16 h-16 mx-auto mt-6 animate-pulse" />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="mt-8 space-y-3 text-base sm:text-lg text-pink-600 font-poppins"
-      >
-        <p className="text-sm sm:text-base">We&apos;ll enjoy some delicious <span className="font-semibold break-words">{answers.food.join(", ")}</span>.</p>
-        <p className="text-sm sm:text-base">Then we&apos;ll watch <span className="font-semibold italic break-words">&quot;{answers.movie}&quot;</span> together.</p>
-        <p className="text-lg sm:text-xl font-playfair font-bold mt-6">
-          Your excitement level: <span className="text-rose-600">{answers.excitement}/100</span>
-        </p>
-      </motion.div>
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-4 sm:px-6 py-4 rounded-2xl border border-pink-200 mb-8 max-w-sm"
+        >
+          <p className="text-xl sm:text-3xl font-playfair font-bold text-pink-700 break-words">
+            {formatDate(answers.date)} at {answers.time}
+          </p>
+        </motion.div>
+        <motion.img
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          src="https://media.tenor.com/yvUCU981VYoAAAAj/mochi-cat-goma.gif"
+          alt="Excited bear gif"
+          className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+        />
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
+        >
+          <Heart className="text-red-500 w-16 h-16 mx-auto mt-6 animate-pulse" />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.6 }}
+          className="mt-8 space-y-3 text-base sm:text-lg text-pink-600 font-poppins"
+        >
+          <p className="text-sm sm:text-base">We&apos;ll enjoy some delicious <span className="font-semibold break-words">{answers.food.join(", ")}</span>.</p>
+          <p className="text-sm sm:text-base">Then we&apos;ll watch <span className="font-semibold italic break-words">&quot;{answers.movie}&quot;</span> together.</p>
+          <p className="text-lg sm:text-xl font-playfair font-bold mt-6">
+            Your excitement level: <span className="text-rose-600">{answers.excitement}/100</span>
+          </p>
+        </motion.div>
       </StepCard>
     </motion.div>,
   ];
 
   useEffect(() => {
     const saveAnswers = async () => {
-      console.log('Saved answers:', answers);
-      
-      // Save to localStorage
-      localStorage.setItem('dateProposalAnswers', JSON.stringify(answers));
+      console.log("Saved answers:", answers);
 
-      // Send to your email
+      localStorage.setItem("dateProposalAnswers", JSON.stringify(answers));
+
       try {
-        await fetch('/api/send-response', {
-          method: 'POST',
+        await fetch("/api/send-response", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(answers)
+          body: JSON.stringify(answers),
         });
       } catch (error) {
-        console.error('Failed to send response:', error);
+        console.error("Failed to send response:", error);
       }
     };
 
