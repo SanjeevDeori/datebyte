@@ -106,7 +106,7 @@ const formatDate = (d: Date | null) => {
         alt="Cute bear proposal gif"
         className="w-full max-w-md mx-auto mb-4 rounded-lg shadow-lg"
       />
-      <div className="space-x-4">
+      <div className="space-y-3 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center">
         <Button
           onClick={() => {
             handleAnswer("isAvailable", true);
@@ -159,7 +159,7 @@ const formatDate = (d: Date | null) => {
     
     <motion.div key="step1" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={1} totalSteps={6}>
-      <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
         YEYYYYYYYY, WHEN SHALL WE GO?
       </h2>
       <motion.img
@@ -168,18 +168,20 @@ const formatDate = (d: Date | null) => {
         transition={{ duration: 0.5 }}
         src="https://media.tenor.com/WiQQRwR2QFAAAAAi/cute-panda.gif"
         alt="Excited bear gif"
-        className="w-full max-w-md mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+        className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
       />
-      <div className="mb-6 p-4 bg-white rounded-lg shadow-lg">
-        <Calendar
-          mode="single"
-          selected={answers.date || undefined}
-          onSelect={(date) => setAnswers({ ...answers, date: date || null })}
-          className="mx-auto mb-4 w-full max-w-md"
-        />
-        <div className="flex gap-3 justify-center mt-4">
+      <div className="mb-6 p-4 bg-white rounded-lg shadow-lg overflow-x-auto">
+        <div className="flex justify-center mb-4 min-w-fit">
+          <Calendar
+            mode="single"
+            selected={answers.date || undefined}
+            onSelect={(date) => setAnswers({ ...answers, date: date || null })}
+            className="mx-auto scale-75 sm:scale-90 md:scale-100 origin-top"
+          />
+        </div>
+        <div className="flex gap-2 sm:gap-3 justify-center mt-4 flex-wrap px-2">
           <Select onValueChange={(val) => setHour(val)}>
-            <SelectTrigger className="w-24 bg-pink-50 border-pink-200 text-pink-700">
+            <SelectTrigger className="w-20 sm:w-24 bg-pink-50 border-pink-200 text-pink-700 text-sm">
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
             <SelectContent>
@@ -192,7 +194,7 @@ const formatDate = (d: Date | null) => {
           </Select>
 
           <Select onValueChange={(val) => setMinute(val)}>
-            <SelectTrigger className="w-20 bg-pink-50 border-pink-200 text-pink-700">
+            <SelectTrigger className="w-16 sm:w-20 bg-pink-50 border-pink-200 text-pink-700 text-sm">
               <SelectValue placeholder="Min" />
             </SelectTrigger>
             <SelectContent>
@@ -205,7 +207,7 @@ const formatDate = (d: Date | null) => {
           </Select>
 
           <Select onValueChange={(val) => setAmpm(val)}>
-            <SelectTrigger className="w-20 bg-pink-50 border-pink-200 text-pink-700">
+            <SelectTrigger className="w-16 sm:w-20 bg-pink-50 border-pink-200 text-pink-700 text-sm">
               <SelectValue placeholder="AM/PM" />
             </SelectTrigger>
             <SelectContent>
@@ -221,7 +223,7 @@ const formatDate = (d: Date | null) => {
       <Button
         onClick={() => setStep(step + 1)}
         disabled={!answers.date || !answers.time}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
       >
         <Clock className="mr-2 h-5 w-5" /> Set our date!{" "}
         <Heart className="ml-2 h-5 w-5" />
@@ -232,10 +234,10 @@ const formatDate = (d: Date | null) => {
   
     <motion.div key="step2" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={2} totalSteps={6}>
-      <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
         What shall we feast on, my dear?
       </h2>
-      <div className="grid grid-cols-2 gap-4 md:gap-6 mb-8">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 mb-8">
         {[
           { name: "Pork Thali", icon: <Utensils className="w-6 h-6" /> },
           { name: "Pani Puri", icon: <Utensils className="w-6 h-6" /> },
@@ -261,7 +263,7 @@ const formatDate = (d: Date | null) => {
       <Button
         onClick={() => setStep(step + 1)}
         disabled={answers.food.length === 0}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
       >
         Looks delicious! 🍽️
       </Button>
@@ -270,10 +272,10 @@ const formatDate = (d: Date | null) => {
 
      
     <motion.div key="step3" className="text-center" {...fadeInUp}>
-      <h2 className="text-3xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
         What shall we watch together?
       </h2>
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 mb-6">
         {[
           "The Notebook",
           "La La Land",
@@ -289,7 +291,7 @@ const formatDate = (d: Date | null) => {
             key={movie}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-4 px-6 rounded-lg shadow-md transition-colors duration-300"
+            className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-3 px-4 sm:py-4 sm:px-6 rounded-lg shadow-md transition-colors duration-300 text-sm sm:text-base"
             onClick={() => {
               if (movie === "Something else") {
                 const customMovie = prompt(
@@ -311,10 +313,10 @@ const formatDate = (d: Date | null) => {
     
     <motion.div key="step4" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={4} totalSteps={6}>
-      <h2 className="text-4xl sm:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
         How excited are you for our date?
       </h2>
-      <div className="max-w-lg mx-auto mb-8 p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
+      <div className="max-w-lg mx-auto mb-8 p-6 sm:p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
         <Slider
           defaultValue={[50]}
           max={100}
@@ -323,13 +325,13 @@ const formatDate = (d: Date | null) => {
             setAnswers({ ...answers, excitement: value[0] })
           }
         />
-        <div className="flex justify-between mt-6 text-sm text-pink-600 font-semibold">
+        <div className="flex justify-between mt-6 text-xs sm:text-sm text-pink-600 font-semibold gap-2">
           <span>😐 Can&apos;t wait!</span>
           <span>🤩 Super duper excited!</span>
         </div>
       </div>
       <motion.div
-        className="text-4xl font-playfair font-bold text-pink-600 mb-8"
+        className="text-2xl sm:text-4xl font-playfair font-bold text-pink-600 mb-8"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -341,7 +343,7 @@ const formatDate = (d: Date | null) => {
           setStep(step + 1);
           setTimeout(triggerConfetti, 500);
         }}
-        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+        className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
       >
         Let&apos;s make it official! 💕
       </Button>
@@ -351,19 +353,19 @@ const formatDate = (d: Date | null) => {
      
     <motion.div key="step5" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={6} totalSteps={6}>
-      <h2 className="text-5xl sm:text-6xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
         It&apos;s a date, my love!
       </h2>
-      <p className="text-lg text-rose-500 mb-3 font-poppins">
+      <p className="text-base sm:text-lg text-rose-500 mb-3 font-poppins">
         I can&apos;t wait to see you on:
       </p>
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-6 py-4 rounded-2xl border border-pink-200 mb-8"
+        className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-4 sm:px-6 py-4 rounded-2xl border border-pink-200 mb-8 max-w-sm"
       >
-        <p className="text-3xl font-playfair font-bold text-pink-700">
+        <p className="text-xl sm:text-3xl font-playfair font-bold text-pink-700 break-words">
           {formatDate(answers.date)} at {answers.time}
         </p>
       </motion.div>
@@ -373,7 +375,7 @@ const formatDate = (d: Date | null) => {
         transition={{ duration: 0.5 }}
         src="https://media.tenor.com/yvUCU981VYoAAAAj/mochi-cat-goma.gif"
         alt="Excited bear gif"
-        className="w-full max-w-md mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+        className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
       />
       <motion.div
         initial={{ scale: 0 }}
@@ -386,11 +388,11 @@ const formatDate = (d: Date | null) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.6 }}
-        className="mt-8 space-y-3 text-lg text-pink-600 font-poppins"
+        className="mt-8 space-y-3 text-base sm:text-lg text-pink-600 font-poppins"
       >
-        <p className="text-base">We&apos;ll enjoy some delicious <span className="font-semibold">{answers.food.join(", ")}</span>.</p>
-        <p className="text-base">Then we&apos;ll watch <span className="font-semibold italic">&quot;{answers.movie}&quot;</span> together.</p>
-        <p className="text-xl font-playfair font-bold mt-6">
+        <p className="text-sm sm:text-base">We&apos;ll enjoy some delicious <span className="font-semibold break-words">{answers.food.join(", ")}</span>.</p>
+        <p className="text-sm sm:text-base">Then we&apos;ll watch <span className="font-semibold italic break-words">&quot;{answers.movie}&quot;</span> together.</p>
+        <p className="text-lg sm:text-xl font-playfair font-bold mt-6">
           Your excitement level: <span className="text-rose-600">{answers.excitement}/100</span>
         </p>
       </motion.div>
@@ -425,7 +427,7 @@ const formatDate = (d: Date | null) => {
   }, [step, answers, steps.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 flex items-center justify-center p-4 sm:p-6">
       <Suspense fallback={null}>
         <HeartBackground />
       </Suspense>
