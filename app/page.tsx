@@ -156,7 +156,7 @@ export default function EnchantingDateProposalApp() {
 
     <motion.div key="step1" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={1} totalSteps={6}>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
           YEYYYYYYYY, WHEN SHALL WE GO?
         </h2>
         <motion.img
@@ -165,19 +165,20 @@ export default function EnchantingDateProposalApp() {
           transition={{ duration: 0.5 }}
           src="https://media.tenor.com/WiQQRwR2QFAAAAAi/cute-panda.gif"
           alt="Excited bear gif"
-          className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+          className="w-full max-w-xs mx-auto mb-4 sm:mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
         />
-        <div className="mb-6 p-3 sm:p-4 bg-white rounded-lg shadow-lg overflow-hidden">
-          <Calendar
-            mode="single"
-            selected={answers.date || undefined}
-            onSelect={(date) => setAnswers({ ...answers, date: date || null })}
-            className="mx-auto w-full max-w-[320px]"
-          />
+        <div className="mb-4 sm:mb-6 p-2 sm:p-3 bg-white rounded-lg shadow-lg overflow-x-hidden">
+          <div className="w-full flex justify-center">
+            <Calendar
+              mode="single"
+              selected={answers.date || undefined}
+              onSelect={(date) => setAnswers({ ...answers, date: date || null })}
+            />
+          </div>
 
-          <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3 justify-center">
+          <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-1.5 sm:gap-2 w-full px-2">
             <Select onValueChange={(val) => setHour(val)}>
-              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-xs sm:text-sm h-8 sm:h-10">
                 <SelectValue placeholder="Hour" />
               </SelectTrigger>
               <SelectContent>
@@ -190,7 +191,7 @@ export default function EnchantingDateProposalApp() {
             </Select>
 
             <Select onValueChange={(val) => setMinute(val)}>
-              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-xs sm:text-sm h-8 sm:h-10">
                 <SelectValue placeholder="Min" />
               </SelectTrigger>
               <SelectContent>
@@ -203,7 +204,7 @@ export default function EnchantingDateProposalApp() {
             </Select>
 
             <Select onValueChange={(val) => setAmpm(val)}>
-              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-sm">
+              <SelectTrigger className="w-full bg-pink-50 border-pink-200 text-pink-700 text-xs sm:text-sm h-8 sm:h-10">
                 <SelectValue placeholder="AM/PM" />
               </SelectTrigger>
               <SelectContent>
@@ -219,19 +220,19 @@ export default function EnchantingDateProposalApp() {
         <Button
           onClick={() => setStep(step + 1)}
           disabled={!answers.date || !answers.time}
-          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-xs sm:text-base"
         >
-          <Clock className="mr-2 h-5 w-5" /> Set our date! <Heart className="ml-2 h-5 w-5" />
+          <Clock className="mr-2 h-4 sm:h-5 w-4 sm:w-5" /> Set our date! <Heart className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
         </Button>
       </StepCard>
     </motion.div>,
 
     <motion.div key="step2" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={2} totalSteps={6}>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
           What shall we feast on, my dear?
         </h2>
-        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 mb-8">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
           {[
             { name: "Pork Thali", icon: <Utensils className="w-6 h-6" /> },
             { name: "Pani Puri", icon: <Utensils className="w-6 h-6" /> },
@@ -257,7 +258,7 @@ export default function EnchantingDateProposalApp() {
         <Button
           onClick={() => setStep(step + 1)}
           disabled={answers.food.length === 0}
-          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-sm sm:text-base"
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 text-xs sm:text-base"
         >
           Looks delicious! 🍽️
         </Button>
@@ -284,7 +285,7 @@ export default function EnchantingDateProposalApp() {
             key={movie}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-3 px-4 sm:py-4 sm:px-6 rounded-lg shadow-md transition-colors duration-300 text-sm sm:text-base"
+            className="bg-white text-pink-600 hover:bg-pink-100 font-bold py-3 px-4 sm:py-4 sm:px-6 rounded-lg shadow-md transition-colors duration-300 text-xs sm:text-base"
             onClick={() => {
               if (movie === "Something else") {
                 const customMovie = prompt("What movie would you like to watch?");
@@ -303,23 +304,23 @@ export default function EnchantingDateProposalApp() {
 
     <motion.div key="step4" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={4} totalSteps={6}>
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-playfair font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
           How excited are you for our date?
         </h2>
-        <div className="max-w-lg mx-auto mb-8 p-6 sm:p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
+        <div className="max-w-lg mx-auto mb-6 sm:mb-8 p-4 sm:p-8 bg-gradient-to-b from-white/80 to-pink-50/60 rounded-2xl shadow-lg border border-pink-100">
           <Slider
             defaultValue={[50]}
             max={100}
             step={25}
             onValueChange={(value) => setAnswers({ ...answers, excitement: value[0] })}
           />
-          <div className="flex justify-between mt-6 text-xs sm:text-sm text-pink-600 font-semibold gap-2">
+          <div className="flex justify-between mt-4 sm:mt-6 text-xs sm:text-sm text-pink-600 font-semibold gap-2">
             <span>😐 Can&apos;t wait!</span>
             <span>🤩 Super duper excited!</span>
           </div>
         </div>
         <motion.div
-          className="text-2xl sm:text-4xl font-playfair font-bold text-pink-600 mb-8"
+          className="text-2xl sm:text-4xl font-playfair font-bold text-pink-600 mb-6 sm:mb-8"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
@@ -331,7 +332,7 @@ export default function EnchantingDateProposalApp() {
             setStep(step + 1);
             setTimeout(triggerConfetti, 500);
           }}
-          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+          className="bg-gradient-to-r from-pink-500 to-rose-500 hover:brightness-95 text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-xs sm:text-base"
         >
           Let&apos;s make it official! 💕
         </Button>
@@ -340,19 +341,19 @@ export default function EnchantingDateProposalApp() {
 
     <motion.div key="step5" className="text-center" {...fadeInUp}>
       <StepCard stepNumber={6} totalSteps={6}>
-        <h2 className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-rose-500">
           It&apos;s a date, my love!
         </h2>
-        <p className="text-base sm:text-lg text-rose-500 mb-3 font-poppins">
+        <p className="text-sm sm:text-lg text-rose-500 mb-3 font-poppins">
           I can&apos;t wait to see you on:
         </p>
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-4 sm:px-6 py-4 rounded-2xl border border-pink-200 mb-8 max-w-sm"
+          className="inline-block bg-gradient-to-r from-pink-100 to-rose-100 px-3 sm:px-6 py-3 sm:py-4 rounded-2xl border border-pink-200 mb-6 sm:mb-8 max-w-xs sm:max-w-sm"
         >
-          <p className="text-xl sm:text-3xl font-playfair font-bold text-pink-700 break-words">
+          <p className="text-lg sm:text-3xl font-playfair font-bold text-pink-700 break-words">
             {formatDate(answers.date)} at {answers.time}
           </p>
         </motion.div>
@@ -362,24 +363,24 @@ export default function EnchantingDateProposalApp() {
           transition={{ duration: 0.5 }}
           src="https://media.tenor.com/yvUCU981VYoAAAAj/mochi-cat-goma.gif"
           alt="Excited bear gif"
-          className="w-full max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
+          className="w-full max-w-xs sm:max-w-sm mx-auto mb-6 rounded-2xl shadow-2xl shadow-pink-300/30"
         />
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.5, type: "spring", stiffness: 260, damping: 20 }}
         >
-          <Heart className="text-red-500 w-16 h-16 mx-auto mt-6 animate-pulse" />
+          <Heart className="text-red-500 w-12 sm:w-16 h-12 sm:h-16 mx-auto mt-4 sm:mt-6 animate-pulse" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="mt-8 space-y-3 text-base sm:text-lg text-pink-600 font-poppins"
+          className="mt-6 sm:mt-8 space-y-2 sm:space-y-3 text-xs sm:text-lg text-pink-600 font-poppins"
         >
-          <p className="text-sm sm:text-base">We&apos;ll enjoy some delicious <span className="font-semibold break-words">{answers.food.join(", ")}</span>.</p>
-          <p className="text-sm sm:text-base">Then we&apos;ll watch <span className="font-semibold italic break-words">&quot;{answers.movie}&quot;</span> together.</p>
-          <p className="text-lg sm:text-xl font-playfair font-bold mt-6">
+          <p className="text-xs sm:text-base">We&apos;ll enjoy some delicious <span className="font-semibold break-words">{answers.food.join(", ")}</span>.</p>
+          <p className="text-xs sm:text-base">Then we&apos;ll watch <span className="font-semibold italic break-words">&quot;{answers.movie}&quot;</span> together.</p>
+          <p className="text-base sm:text-xl font-playfair font-bold mt-4 sm:mt-6">
             Your excitement level: <span className="text-rose-600">{answers.excitement}/100</span>
           </p>
         </motion.div>
@@ -412,7 +413,7 @@ export default function EnchantingDateProposalApp() {
   }, [step, answers, steps.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 flex items-center justify-center p-4 sm:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-100 flex items-center justify-center p-3 sm:p-6">
       <Suspense fallback={null}>
         <HeartBackground />
       </Suspense>
