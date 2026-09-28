@@ -83,14 +83,14 @@ export default function EnchantingDateProposalApp() {
     });
   };
 
-  const formatDate = (d: Date | null) => {
-    if (!d) return "";
-    try {
-      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-    } catch (e) {
-      return d.toDateString();
-    }
-  };
+const formatDate = (d: Date | null) => {
+  if (!d) return "";
+  try {
+    return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  } catch {
+    return d.toDateString();
+  }
+};
 
   const steps = [
     
